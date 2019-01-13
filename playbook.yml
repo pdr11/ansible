@@ -1,0 +1,23 @@
+---
+- hosts: CICD_node
+  become: true
+  remote_user: priyankarathi
+  gather_facts: false
+  tasks:
+          - name: install package
+            yum: name=ntp state=latest
+          - name: check service
+            service: name= {{ appname }} state=started
+
+- hosts: artifactory
+  become: true
+  remote_user: priyankarathi
+  gather_facts: false
+  tasks:
+          - name: uninstall app
+            apt: name= {{appname}} state=absent
+          - name: check if service not available
+            service: name= {{appname}} state=removed
+          - name: create user
+            user: name=user123
+

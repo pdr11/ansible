@@ -1,0 +1,7 @@
+---
+- hosts: jenkins
+  become: true
+  remote_user: priyankarathi
+  gather_facts: true
+  roles: 
+        - AutoWebserver 

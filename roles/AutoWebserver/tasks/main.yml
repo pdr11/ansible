@@ -1,0 +1,15 @@
+---
+- name: install package
+  yum: name=httpd state=latest
+  when: ansible_os_family=="RedHat"
+  
+- name: check service
+  service: name=httpd state=started
+
+- name: deploy home page
+  template: src=index.j2 dest={{ doc_root }}/index.html
+  notify:
+  - restart_webserver
+  
+- include: usercreation.yml
+

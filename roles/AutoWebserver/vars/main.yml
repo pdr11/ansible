@@ -1,0 +1,4 @@
+'appname': 'ntp'
+'user' : 'userGroup'
+'doc_root' : '/var/www/html/'
+
